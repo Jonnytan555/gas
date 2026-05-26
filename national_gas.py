@@ -8,13 +8,13 @@ import sqlalchemy as sa
 from retry import retry
 
 sys.path.insert(0, str(Path(__file__).parent))
-sys.path.insert(0, r"C:\Python\common_libraries\common-scraper\src")
+sys.path.insert(0, str(Path(__file__).parent / "utils"))
 
 from scraper.scraper import Scraper
 from scraper.request.post_request import HttpPostRequestHandler
 from scraper.persistence.db_upsert_handler import DbUpsertHandler
 from scraper.kafka.active_mq_publisher import ActiveMqPublisher
-from utils.scraper.response.ngt_response_handler import NgtResponseHandler
+from scraper.response.ngt_response_handler import NgtResponseHandler
 
 
 class NationalGas:

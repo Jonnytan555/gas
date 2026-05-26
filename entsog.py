@@ -7,13 +7,13 @@ import sqlalchemy as sa
 from retry import retry
 
 sys.path.insert(0, str(Path(__file__).parent))
-sys.path.insert(0, r"C:\Python\common_libraries\common-scraper\src")
+sys.path.insert(0, str(Path(__file__).parent / "utils"))
 
 from scraper.scraper import Scraper
 from scraper.request.get_request import HttpGetRequestHandler
 from scraper.persistence.db_merge_handler import DbMergeHandler
 from scraper.kafka.active_mq_publisher import ActiveMqPublisher
-from utils.scraper.response.entsog_response_handler import EnsogResponseHandler
+from scraper.response.entsog_response_handler import EnsogResponseHandler
 
 
 class ENTSOG:

@@ -5,7 +5,7 @@ from pathlib import Path
 from retry import retry
 
 sys.path.insert(0, str(Path(__file__).parent))
-sys.path.insert(0, r"C:\Python\common_libraries\common-scraper\src")
+sys.path.insert(0, str(Path(__file__).parent / "utils"))
 
 import logger
 logger.setup_log(
