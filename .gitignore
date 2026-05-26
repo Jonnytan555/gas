@@ -1,0 +1,32 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# Environment / secrets
+.env
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user
+
+# GRIB2 / large data files
+*.grib2
+*.grib
+*.nc
+
+# OS
+.DS_Store
+Thumbs.db
