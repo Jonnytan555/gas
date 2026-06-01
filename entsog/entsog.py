@@ -2,13 +2,14 @@ import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
-import appsettings as settings
 import sqlalchemy as sa
 from retry import retry
 
-sys.path.insert(0, str(Path(__file__).parent))
-sys.path.insert(0, str(Path(__file__).parent / "utils"))
+sys.path.insert(0, str(Path(__file__).parent))             # for appsettings
+sys.path.insert(0, str(Path(__file__).parent.parent))      # for gas/ root
+sys.path.insert(0, str(Path(__file__).parent.parent / "utils"))  # for scraper utils
 
+import appsettings as settings
 from scraper.scraper import Scraper
 from scraper.request.get_request import HttpGetRequestHandler
 from scraper.persistence.db_merge_handler import DbMergeHandler

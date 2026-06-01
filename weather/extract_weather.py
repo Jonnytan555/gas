@@ -4,22 +4,25 @@ import sqlalchemy as sa
 from pathlib import Path
 from retry import retry
 
-sys.path.insert(0, str(Path(__file__).parent))
-sys.path.insert(0, str(Path(__file__).parent / "utils"))
+sys.path.insert(0, str(Path(__file__).parent))             # for appsettings
+sys.path.insert(0, str(Path(__file__).parent.parent))      # for gas/ root
+sys.path.insert(0, str(Path(__file__).parent.parent / "utils"))  # for scraper utils
 
 import logger
+import appsettings as settings
+
 logger.setup_log(
     app="extract_weather",
-    filename=os.path.join(r"C:\Python\Scrapes\gas\logs", "extract_weather.log"),
+    filename=os.path.join(settings.LOG_DIR, "extract_weather.log"),
     use_stream=True,
 )
 
-import appsettings as settings
 from scraper.scraper import Scraper
 from scraper.persistence.db_upsert_handler import DbUpsertHandler
 from scraper.kafka.active_mq_publisher import ActiveMqPublisher
-from utils.scraper.request.open_meteo_request import OpenMeteoRequestHandler
-from utils.scraper.response.open_meteo_response_handler import OpenMeteoResponseHandler
+from scraper.request.open_meteo_request import OpenMeteoRequestHandler
+from scraper.response.open_meteo_response_handler import OpenMeteoResponseHandler
+
 
 class OpenMeteoWeather:
 

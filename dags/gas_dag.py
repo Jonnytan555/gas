@@ -21,15 +21,22 @@ default_args = {
 def scrape_national_gas():
     sys.path.insert(0, GAS_PATH)
     sys.path.insert(0, os.path.join(GAS_PATH, "utils"))
-    from national_gas import NationalGas
+    from national_gas.national_gas import NationalGas
     NationalGas().scrape()
 
 
 def scrape_entsog():
     sys.path.insert(0, GAS_PATH)
     sys.path.insert(0, os.path.join(GAS_PATH, "utils"))
-    from entsog import ENTSOG
+    from entsog.entsog import ENTSOG
     ENTSOG().scrape()
+
+
+def scrape_weather():
+    sys.path.insert(0, GAS_PATH)
+    sys.path.insert(0, os.path.join(GAS_PATH, "utils"))
+    from weather.extract_weather import OpenMeteoWeather
+    OpenMeteoWeather().scrape()
 
 
 with DAG(
@@ -49,4 +56,9 @@ with DAG(
         python_callable=scrape_entsog,
     )
 
-    [national_gas_task, entsog_task]
+    weather_task = PythonOperator(
+        task_id="scrape_weather",
+        python_callable=scrape_weather,
+    )
+
+    [national_gas_task, entsog_task, weather_task]
