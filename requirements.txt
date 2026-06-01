@@ -5,3 +5,4 @@ pyodbc
 requests
 stomp.py
 retry
+concurrent_log_handler

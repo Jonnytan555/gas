@@ -39,6 +39,13 @@ def scrape_weather():
     OpenMeteoWeather().scrape()
 
 
+def scrape_ecmwf():
+    sys.path.insert(0, GAS_PATH)
+    sys.path.insert(0, os.path.join(GAS_PATH, "utils"))
+    from weather.extract_ecmwf import EcmwfWeather
+    EcmwfWeather().scrape()
+
+
 with DAG(
     "gas_pipeline",
     default_args=default_args,
@@ -61,4 +68,9 @@ with DAG(
         python_callable=scrape_weather,
     )
 
-    [national_gas_task, entsog_task, weather_task]
+    ecmwf_task = PythonOperator(
+        task_id="scrape_ecmwf",
+        python_callable=scrape_ecmwf,
+    )
+
+    [national_gas_task, entsog_task, weather_task, ecmwf_task]

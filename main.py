@@ -11,6 +11,7 @@ import logger
 from national_gas.national_gas import NationalGas
 from entsog.entsog import ENTSOG
 from weather.extract_weather import OpenMeteoWeather
+from weather.extract_ecmwf import EcmwfWeather
 
 APP_NAME = "gas_data"
 
@@ -25,6 +26,7 @@ if __name__ == "__main__":
         NationalGas().scrape()
         ENTSOG().scrape()
         OpenMeteoWeather().scrape()
+        EcmwfWeather().scrape()
     except Exception as e:
         logging.error("Error: %s", traceback.format_exc())
         raise
